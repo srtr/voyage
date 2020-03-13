@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7.3
+      - image: circleci/python:3.7.4
     steps:
       # Step 1: obtain repo from GitHub
       - checkout
@@ -13,5 +13,5 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            nosetests tests/LoginTest.py
+            python3 -m unittest
       - run: echo "Build Successful"
