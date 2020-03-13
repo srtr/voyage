@@ -11,10 +11,12 @@ jobs:
           name: install dependencies
           command: |
             python3 -m venv venv
-            . venv/bin/activate
+            .venv/bin/activate
             pip install -r requirements.txt
       - run:
           name: run tests
           command: |
+            python3 -m venv venv
+            .venv/bin/activate
             nosetests tests/LoginTest.py
       - run: echo "Build Successful"
