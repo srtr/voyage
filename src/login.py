@@ -2,11 +2,15 @@ import re
 
 class Login:
 
+    EMAIL_MIN_LENGTH = 7
+    MOBILE_LENGTH = 10
+    ALLOWED_KEYS = {'name', 'mobile', 'email'}
+
     def validate_email(self,email):
         if not isinstance(email, str) or not email:
             return False
 
-        if len(email) > 7:
+        if len(email) > self.EMAIL_MIN_LENGTH:
             
             if re.match("^.+@(\[?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email) != None:
                 return True
@@ -23,7 +27,7 @@ class Login:
         if not isinstance(mobile, str):
             return False
         
-        if len(mobile) == 10:
+        if len(mobile) == self.MOBILE_LENGTH:
             
             if re.match('^[0-9]+$', mobile) != None:
                 return True
@@ -31,11 +35,8 @@ class Login:
         return False
 
     def validate(self, form):
-        keys = ['name','mobile','email']
-
-        for key in keys:
-            if key not in form:
-                return False
+        if form.keys() != self.ALLOWED_KEYS:
+            return False
 
         email = form['email']
         name = form['name']
