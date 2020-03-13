@@ -13,4 +13,8 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-      - run: echo "Check"
+      - run:
+          name: run tests
+          command: |
+            nosetests tests/math-test.py
+      - run: echo "Build Successful"
