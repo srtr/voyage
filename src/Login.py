@@ -1,5 +1,5 @@
 class Login:
-    def validate(form):
+    def validate(self, form):
         email = form['email']
         if not isinstance(email, str):
             return False
